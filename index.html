@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dexter Sun - Personal Website</title>
+    <script>
+      MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    
+    <style>
+        /* --- 全局样式设置 --- */
+        :root {
+            --sidebar-bg: #f5f7fa; /* 侧边栏背景灰 */
+            --primary-color: #0066cc; /* 学术蓝链接色 */
+            --text-color: #333;
+            --heading-color: #222;
+        }
+        body {
+            margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.7; color: var(--text-color); background: #fff;
+        }
+        a { color: var(--primary-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        h1, h2, h3 { color: var(--heading-color); }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 40px; }
+
+        /* --- 布局框架 (核心) --- */
+        .layout-container { display: flex; min-height: 100vh; }
+        
+        /* 侧边栏 (电脑端左侧固定) */
+        .sidebar {
+            width: 300px; background: var(--sidebar-bg); padding: 40px 30px;
+            border-right: 1px solid #eee; flex-shrink: 0;
+            display: flex; flex-direction: column;
+        }
+        .profile-img {
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+            margin-bottom: 20px; border: 3px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .sidebar-name { font-size: 1.8rem; margin: 0 0 10px 0; }
+        .sidebar-bio { font-size: 0.9rem; color: #666; margin-bottom: 30px; }
+        .nav-links a { display: block; padding: 10px 0; color: #555; font-weight: 600; }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        /* 主内容区 (右侧) */
+        .main-content { flex: 1; padding: 50px 60px; max-width: 900px; }
+
+        /* --- 项目样式 --- */
+        .project-item { display: flex; gap: 25px; margin-bottom: 40px; align-items: flex-start; }
+        .project-thumb {
+            width: 220px; height: 160px; object-fit: cover;
+            border-radius: 6px; border: 1px solid #eee; flex-shrink: 0; background: #eee;
+        }
+        .tags code { background: #e9ecef; padding: 2px 6px; border-radius: 4px; font-size: 0.85em; color: #444; }
+        
+        /* --- 公式折叠块样式 --- */
+        details.math-block {
+            background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 5px; padding: 10px 15px; margin-top: 15px;
+        }
+        details.math-block summary {
+            font-weight: 600; cursor: pointer; color: #0056b3; outline: none;
+        }
+        .math-content { margin-top: 15px; font-size: 0.95rem; color: #444; }
+
+        /* --- 手机端适配 --- */
+        @media (max-width: 768px) {
+            .layout-container { flex-direction: column; }
+            .sidebar { width: auto; padding: 30px 20px; text-align: center; align-items: center; border-right: none; border-bottom: 1px solid #eee; }
+            .main-content { padding: 30px 20px; }
+            .project-item { flex-direction: column; }
+            .project-thumb { width: 100%; height: auto; max-height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="layout-container">
+    <aside class="sidebar">
+        <img src="profile.jpg" alt="Dexter Sun" class="profile-img" onerror="this.src='https://via.placeholder.com/150?text=Photo'">
+        
+        <h1 class="sidebar-name">Dexter Sun</h1>
+        <div class="sidebar-bio">
+            Undergraduate Student<br>
+            [Your University Name]<br>
+            Focus: Robotics & CV
+        </div>
+        
+        <nav class="nav-links">
+            <a href="#about">About Me</a>
+            <a href="#projects">Research Projects</a>
+            <a href="#cv">Curriculum Vitae</a>
+        </nav>
+        
+        <div style="margin-top: auto; padding-top: 30px; font-size: 0.9em;">
+            <a href="mailto:your.email@example.com">Email Me</a><br>
+            <a href="https://github.com/DexterSun">GitHub Profile</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        
+        <section id="about">
+            <h2 style="margin-top: 0;">About Me</h2>
+            <p>
+                Hello! I am an undergraduate student with a strong passion for **embodied artificial intelligence**. 
+                My research interests lie at the intersection of **Robotics Control** (specifically legged locomotion) and **Computer Vision**.
+            </p>
+            <p>
+                I am actively looking for **Summer School** opportunities to gain more hands-on research experience.
+            </p>
+        </section>
+
+        <section id="projects">
+            <h2>Selected Projects</h2>
+
+            <div class="project-item">
+                <img src="walking.gif" alt="Bipedal Walking" class="project-thumb" onerror="this.style.background='#ddd'">
+                <div>
+                    <h3 style="margin: 0 0 10px 0;">Bipedal Robot Walking Control</h3>
+                    <div class="tags" style="margin-bottom: 10px;">
+                        <code>MPC</code> <code>LIPM Dynamics</code> <code>MuJoCo</code> <code>Python/C++</code>
+                    </div>
+                    <p>
+                        Designed a hierarchical control framework for a bipedal robot to achieve stable walking on uneven terrains in MuJoCo simulation.
+                        Implemented a Model Predictive Controller (MPC) based on simplified dynamics to optimize foot placement in real-time.
+                    </p>
+                    <a href="https://github.com/DexterSun/YOUR-REPO-NAME"><strong>[View Code on GitHub]</strong></a>
+
+                    <details class="math-block">
+                        <summary>▶ Click to view Mathematical Derivation (LIPM & MPC)</summary>
+                        <div class="math-content">
+                            <p>We model the robot using the **Linear Inverted Pendulum Mode (LIPM)** dynamics:</p>
+                            $$ \ddot{x} = \frac{g}{z_c} (x - p_x) $$
+                            <p>Where $x$ is the CoM position, $z_c$ is constant height, and $p_x$ is the ZMP.</p>
+                            
+                            <p>The MPC optimization problem is formulated as a quadratic program (QP):</p>
+                            $$ \min_{U} \sum_{k=0}^{N-1} \| X_{k+1} - X_{ref} \|_Q^2 + \| U_k \|_R^2 $$
+                            <p>Subject to dynamics constraints $X_{k+1} = AX_k + BU_k$ and ZMP stability polygons.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
+
+            <div class="project-item">
+                <img src="digit.png" alt="Digit Recognition" class="project-thumb" onerror="this.style.background='#ddd'">
+                <div>
+                    <h3 style="margin: 0 0 10px 0;">Handwritten Digit Recognition</h3>
+                    <div class="tags" style="margin-bottom: 10px;">
+                        <code>Deep Learning</code> <code>CNN</code> <code>PyTorch</code> <code>Computer Vision</code>
+                    </div>
+                    <p>
+                        Built and trained a Convolutional Neural Network (CNN) architecture on the MNIST dataset, achieving **99.2% test accuracy**. 
+                        Utilized data augmentation (rotation, scaling) to improve model generalization and analyzed failure cases using confusion matrices.
+                    </p>
+                    <a href="https://github.com/DexterSun/YOUR-REPO-NAME"><strong>[View Code on GitHub]</strong></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="cv">
+            <h2>Curriculum Vitae</h2>
+            <p>
+                For more details about my academic background and skills, please download my full CV.
+            </p>
+            <a href="cv.pdf" style="display: inline-block; background: var(--primary-color); color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold; text-decoration: none;">
+                Download CV (PDF)
+            </a>
+        </section>
+
+        <footer style="margin-top: 60px; color: #777; font-size: 0.9em;">
+            © 2024 Dexter Sun. Hosted on GitHub Pages.
+        </ul>
+    </main>
+</div>
+
+</body>
+</html>
